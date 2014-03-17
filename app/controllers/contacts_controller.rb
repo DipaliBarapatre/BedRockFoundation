@@ -1,9 +1,14 @@
 class ContactsController < ApplicationController
   before_filter :authenticate_user!
+
+  # Updated On 14-03-13
   def index
     @page_title = "All Contacts"
     @contacts = Contact.find(:all, :order => "last_name ASC")
-    session[:look] = 'index'
+    respond_to do |format|
+      format.html
+      format.json { render json: ContactsDatatable.new(view_context) }
+    end
   end
   
   def show
@@ -66,7 +71,6 @@ class ContactsController < ApplicationController
   def active_contacts
     @page_title = "Active Contacts"
     @contacts = Contact.where(:contact_status_id => [1,2]).includes(:contact_status, :campaign, :jobs, :statuses).order("created_at DESC")
-    logger.debug("pre render")
     render :template => 'contacts/index'
   end
   

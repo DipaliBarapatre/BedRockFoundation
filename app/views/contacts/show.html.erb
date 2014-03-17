@@ -12,7 +12,7 @@
 			<b>Address: </b> <%= @contact.address_1 + (!@contact.address_2.blank? ? ( @contact.address_2) : "") %> <%=h @contact.city %>, <%=h @contact.province %> <%=h @contact.zip %><br />
 			<b>Phone Number: </b> <%=h @contact.phone %><br />
 			<b>Alternate Number: </b> <%=h @contact.phone_alt %><br />
-		  <b>Campaign:</b> <%= link_to(@contact.campaign.name, @contact.campaign) rescue "Other" %><br />
+		    <b>Campaign:</b> <%= link_to(@contact.campaign.name, @contact.campaign) rescue "Other" %><br />
 		</p>
 
 		<% if @contact.jobs.empty? %>

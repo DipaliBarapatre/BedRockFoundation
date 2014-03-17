@@ -21,6 +21,10 @@
 		<td colspan="2"><%= @options_for_job[:shed_company] rescue "" %></td>
 		<td><strong>Date of Est:</strong> <%= @options_for_job[:estimate_date] %></td>
 	</tr>
+    <tr>
+        <td colspan=2><strong>Job Start Date:</strong> <%= @estimate.contract.scheduled_date.strftime('%m/%d/%Y') rescue "-" %></td>
+        <td colspan=2><strong>Slot:</strong> <%= @estimate.contract.position_in_day rescue "-"%></td>
+    </tr>
 	<tr>
 		<td colspan="2">&nbsp;</td>
 		<td><strong>Scheduled:</strong> <%= @estimate.contract.scheduled_date.strftime("%m/%d/%Y") rescue "" %> 

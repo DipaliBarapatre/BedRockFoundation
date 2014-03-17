@@ -18,12 +18,17 @@ private
 
   def data
     estimates.map do |estimate|
+      compaign_name = estimate.contact.campaign_id.nil? ? "" : Campaign.find_by_id(estimate.contact.campaign_id).name
       [
         link_to(estimate.contact.name,"/contacts/#{estimate.contact_id}", class: "button blue-gradient"),
         h(estimate.id),
         h(estimate.updated_at.strftime("%Y-%m-%d")),
         h(estimate.current_scheduled_at ? estimate.current_scheduled_at.strftime("%B %e, %Y") : ''),
-        number_to_currency(estimate.price_in_cents.to_f/100)
+        number_to_currency(estimate.price_in_cents.to_f/100),
+        h(estimate.contact.contact_status.status_name ),
+        h(estimate.contact.phone),
+        h(estimate.contact.address_oneline),
+        h(compaign_name)
       ]
     end
   end

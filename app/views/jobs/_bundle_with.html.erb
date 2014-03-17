@@ -31,6 +31,12 @@
 
 
 <% if !@job.estimates.select{|e| e.sold? }.empty? %>
+        <div>
+            <b>Crew:</b> <%=h @job.estimates.first.contract.crew.crew_name rescue "" %><br />
+            <b>Job Start Date:</b> <%=h @job.estimates.first.contract.scheduled_date.strftime("%m/%d/%Y") rescue "" %><br />
+            <b>Arrival Time:</b> <%=h @job.estimates.first.contract.arrival_range rescue "" %><br />
+            <b>Slot:</b> <%=h @job.estimates.first.contract.position_in_day rescue "" %><br />
+        </div>
 	<div class="job-sold">
 		This job has been marked as sold!<br />
 		<%= link_to "Click here to view the contract on the schedule", "/schedule", class: "button white-gradient icon-eye" %>
